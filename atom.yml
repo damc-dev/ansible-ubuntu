@@ -1,0 +1,16 @@
+---
+- hosts: all
+  tasks:
+  - name: Install add-apt-repostory
+    sudo: yes
+    apt: name=software-properties-common state=latest
+
+  - name: Add Atom Repository
+    sudo: yes
+    apt_repository: repo='ppa:webupd8team/atom'
+
+  - name: Install Atom
+    sudo: yes
+    apt: name={{item}} state=latest
+    with_items:
+      - atom
